@@ -130,6 +130,9 @@ class YoutubePlayer extends StatefulWidget {
   /// {@endtemplate}
   final bool showVideoProgressIndicator;
 
+  /// onFullscreenButton will override the existing fullscreen function
+  final VoidCallback? onFullScreen;
+
   /// Creates [YoutubePlayer] widget.
   const YoutubePlayer({
     this.key,
@@ -148,6 +151,7 @@ class YoutubePlayer extends StatefulWidget {
     this.actionsPadding = const EdgeInsets.all(8.0),
     this.thumbnail,
     this.showVideoProgressIndicator = false,
+    this.onFullScreen,
   })  : progressColors = progressColors ?? const ProgressBarColors(),
         progressIndicatorColor = progressIndicatorColor ?? Colors.red;
 
@@ -378,7 +382,8 @@ class _YoutubePlayerState extends State<YoutubePlayer> {
                                 ),
                                 RemainingDuration(),
                                 const PlaybackSpeedButton(),
-                                FullScreenButton(),
+                                FullScreenButton(
+                                    onFullScreen: widget.onFullScreen),
                               ],
                         ),
                       ),
